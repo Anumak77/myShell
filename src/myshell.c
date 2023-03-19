@@ -48,10 +48,7 @@ int main (int argc, char ** argv)
         syserr("There is a problem allocating memory");
     }
 
-    char *manual = malloc(strlen(pwd) + strlen("/manual/readme.md"));
-    if(manual == NULL) {
-        syserr(" There is a problem allocating memory");
-    }
+
 
 
         
@@ -125,7 +122,7 @@ int main (int argc, char ** argv)
                 } 
 
                 else if (!strcmp(value,"help")) { // "help" command
-                    help(manual);
+                    help();
                 } 
 
 
@@ -151,9 +148,8 @@ int main (int argc, char ** argv)
             }
         }
     }
-    free(manual);
-    manual = NULL; // frees all the variables
-    free(path);
+
+    free(path);// frees all the variables
     path = NULL;
     return 0; 
 }

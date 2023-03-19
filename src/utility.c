@@ -68,17 +68,10 @@ void pausee() { // the pause command to stop the shell and only continue if pres
 }
 
 
-void help(char *path) { // prints out the readme file
-    char *input = malloc(0);
-    input = realloc(input, sizeof(char) * (strlen("cat ") + strlen(path) + strlen(" | more")));
-    strcat(input, "cat ");
-    strcat(input, path);
-    strcat(input, " | more");
 
-    system(input);   
-
-    free(input);     
-    input = NULL;
+void help() {
+    char command[1024] = "more ../manual/README.md";
+    system(command);
 }
 
 

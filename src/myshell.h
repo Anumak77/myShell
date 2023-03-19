@@ -27,7 +27,7 @@ void envi();
 void cd(char *path);
 void echo(char *args[]);
 void pausee();
-void help(char *path);
+void help();
 
 void syserr(char * msg);
 
