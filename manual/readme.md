@@ -25,10 +25,19 @@ I/O redirection is simply how the program runs and stores its input and output a
 - if the output file is not created already '>>'
 with the use of I/O redirection, we can allow input and output to be stored in files.
 
-Description of the process concept and the differences between background and foreground execution (5 marks)
+Foreground execution is to running a program in shell in the current session, no other commands can be entered until the program has been executed.
+
+Background execution is running a program in a separate shell session. As it is in a seperate shell session, this allows the user run other commands simultaneously.
+
 
     references used - 
 
     https://makefiletutorial.com/
 
     code from Ian G Graham
+
+    Foster-Johnson, E., Welch, J.C. and Anderson, M. (2005) Beginning Shell scripting. Indianapolis, Indiana: Wiley Pub.
+
+    https://stackoverflow.com/questions/18801483/press-any-key-to-continue-function-in-c 
+
+    https://www.ibm.com/docs/en/zos/2.4.0?topic=functions-chdir-change-working-directory 
