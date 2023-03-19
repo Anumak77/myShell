@@ -79,7 +79,7 @@ void IORedirection(char **args) { // input/output redirecton
     for(int i = 1; args[i - 1] !=NULL; i++){ // checks for <
         if(strcmp(args[i - 1], "<") == 0){   
             if(access(args[i - 1], F_OK) != 0){   // this checks if the file exist
-                perror("Error: File Not Found.");
+                perror("File Not Found.");
             }
             else{
                 
