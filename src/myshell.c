@@ -48,9 +48,6 @@ int main (int argc, char ** argv)
         syserr("There is a problem allocating memory");
     }
 
-
-
-
         
         
     if(argv[1]) { // batchmode
