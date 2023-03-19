@@ -1,24 +1,10 @@
 /* 
-strtokeg - skeleton shell using strtok to parse command line
-usage:
-strtokeg
-reads in a line of keyboard input at a time, parsing it into
-tokens that are separated by white spaces (set by #define SEPARATORS).
-can use redirected input if the first token is a recognised internal command, 
-then that command is executed. otherwise the tokens are printed on the display.
-internal commands:
-clear - clears the screen
-quit - exits from the program
+Anushree Umak, s21343003
 ********************************************************************
-version: 1.0
-date:    December 2003
-author:  Ian G Graham
-School of Information Technology
-Griffith University, Gold Coast
-ian.graham@griffith.edu.au
-copyright (c) Ian G Graham, 2003. All rights reserved.
-This code can be used for teaching purposes, but no warranty,
-explicit or implicit, is provided.
+I declare that this material, which I now submit for assessment,
+is entirely my own work and has not been taken from the work of others
+save and to the extent that such work 
+has been cited and acknowledged within the text of my work.
 *******************************************************************/
 
 
@@ -48,7 +34,7 @@ int main (int argc, char ** argv)
     char ** arg;
     char *value;                               // working pointer thru args
     char * prompt = "==>" ;                    // shell prompt
-    /* keep reading input until "quit" command or eof of redirected input */
+    // keep reading input until "quit" command or eof of redirected input 
 
 
 
@@ -56,27 +42,21 @@ int main (int argc, char ** argv)
 
 
     char *pwd = strdup(getenv("PWD"));
-    // signal(SIGINT, sig_handler); 3
 
     char *path = malloc(strlen(pwd) + strlen("/ca216/bin"));
     if(path == NULL) {
-        syserr("Error in memory allocation");
+        syserr("There is a problem allocating memory");
     }
-    strcat(path, pwd);
-    strcat(path, "/ca216/bin");
 
     char *manual = malloc(strlen(pwd) + strlen("/manual/readme.md"));
     if(manual == NULL) {
-        syserr("Error in memory allocation");
+        syserr(" There is a problem allocating memory");
     }
-    strcat(manual, pwd);
-    strcat(manual, "/manual/readme.md");
 
-    setenv("ca216", path, 1);  
 
         
         
-    if(argv[1]) { //batchmode
+    if(argv[1]) { // batchmode
     const char* batchfile = argv[1];
     
     if(access(batchfile, F_OK) == 0)
@@ -93,20 +73,19 @@ int main (int argc, char ** argv)
     
 
 
-    while (!feof(stdin)) { 
-        /* get command line from input */
+    while (!feof(stdin)) {  //get command line from input
         fputs (prompt, stdout); // write prompt
 
         if (fgets (buf, MAX_BUFFER, stdin )) { // read a line
-            /* tokenize the input into args array */
-            arg = args;
+       
+            arg = args; //  tokenize the input into args array
             *arg++ = strtok(buf,SEPARATORS);   // tokenise input
             while ((*arg++ = strtok(NULL,SEPARATORS)));
 
             // last entry will be NULL 
             value = args[0];
             if (value) {                     // if there's anything there
-                /* check for internal/external command */
+                // check for internal/external command 
 
                 if (!strcmp(value,"clear")) { // "clear" command
                     system("clear");
@@ -118,7 +97,7 @@ int main (int argc, char ** argv)
                 }                       // "quit" command
                                        // break out of 'while' loop
 
-                else if (!strcmp(value,"cd")) {
+                else if (!strcmp(value,"cd")) { // "cd" command
                     if(args[1]) {
                         cd(args[1]);
                     }
@@ -128,29 +107,29 @@ int main (int argc, char ** argv)
                 }  
 
                 
-                else if (!strcmp(value,"pause")) { 
+                else if (!strcmp(value,"pause")) {  // "pause" command
                     pausee();
                 } 
 
 
-                else if (!strcmp(value,"dir")) { 
+                else if (!strcmp(value,"dir")) {  // "dir" command
                     dir(args);
                 } 
 
-                else if (!strcmp(value,"environ")) { 
+                else if (!strcmp(value,"environ")) {  // "environ" command
                     envi();
                 } 
 
-                else if (!strcmp(value,"echo")) {
+                else if (!strcmp(value,"echo")) { // "echo" command
                     echo(args);
                 } 
 
-                else if (!strcmp(value,"help")) {
+                else if (!strcmp(value,"help")) { // "help" command
                     help(manual);
                 } 
 
 
-                else{ 
+                else{ // forking
                     int pid = fork();
                     if (pid < 0){
                         fprintf(stderr, "Could not Fork\n");
@@ -161,9 +140,6 @@ int main (int argc, char ** argv)
                         printf("\n");
                     }
                         }
-
-
-    
 
                 /* else pass command onto OS (or in this instance, print them out) */
                 arg = args;
@@ -176,7 +152,7 @@ int main (int argc, char ** argv)
         }
     }
     free(manual);
-    manual = NULL;
+    manual = NULL; // frees all the variables
     free(path);
     path = NULL;
     return 0; 

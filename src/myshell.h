@@ -1,3 +1,12 @@
+/* 
+Anushree Umak, s21343003
+********************************************************************
+I declare that this material, which I now submit for assessment,
+is entirely my own work and has not been taken from the work of others
+save and to the extent that such work 
+has been cited and acknowledged within the text of my work.
+*******************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -7,7 +16,6 @@
 #define MAX_BUFFER 1024                        // max line buffer
 #define MAX_ARGS 64                            // max # args
 #define SEPARATORS " \t\n"     
-                    // token separators
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
@@ -23,7 +31,6 @@ void help(char *path);
 
 void syserr(char * msg);
 
-
-
 extern char **environ;
 
+// all libraries and function callers that are used are called in here in this file 

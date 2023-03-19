@@ -1,3 +1,12 @@
+/* 
+Anushree Umak, s21343003
+********************************************************************
+I declare that this material, which I now submit for assessment,
+is entirely my own work and has not been taken from the work of others
+save and to the extent that such work 
+has been cited and acknowledged within the text of my work.
+*******************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -9,30 +18,30 @@ extern char **environ;
 
 
 
-void syserr(char * msg) {
+void syserr(char * msg) { // sends an error message and then aborts 
     fprintf(stderr, "%s: %s\n", strerror(errno), msg);
     abort();
 }
 
-void clr() {
+void clr() { // clears the screen
     char *argv[] = {NULL};
     execvp("clear", argv);
 }
 
-void dir(char *args[]) {
-    char *argv[64]; 
-    argv[0] = "ls";       
-    argv[1] = "-al";
+void dir(char *args[]) { // shows all contents of the directory
+    char *argv[MAX_BUFFER]; 
+    argv[1] = "ls";       
+    argv[2] = "-al";
     execvp("ls", argv);
 }
 
-void envi() {
+void envi() { // shows all enviroment settings
     for(int i = 0; environ[i] != NULL; i++) {
         printf("%s\n", environ[i]);
     }
 }
 
-void cd(char *path) {
+void cd(char *path) { // shows the current path, and if specified changes to the one mentioned
     char cwd[250];
 
         printf("%s\n", getcwd(cwd, 100));  
@@ -40,15 +49,14 @@ void cd(char *path) {
 }
 
 
-void echo(char *args[]) {
-    char end[64]; 
-    strcat(end, args[1]);
-    for(int i = 2; args[i] != NULL; i++) {
-        strcat(end, " ");
-        strcat(end, args[i]);
+void echo(char *args[MAX_ARGS]) { // repeats anything that is said after echo
+    // char end[MAX_BUFFER]; 
+    // strcat(end, args[1]);
+    for(int i = 1; args[i] != NULL; i++) {
+
         printf("%s\n", args[i]);
     }
-    printf("%s\n", end);
+    //  printf("%s\n", end);
     
 }
 
@@ -59,8 +67,8 @@ void pausee() { // the pause command to stop the shell and only continue if pres
     system("stty echo");      
 }
 
-/* help: print out the readme file */
-void help(char *path) {
+
+void help(char *path) { // prints out the readme file
     char *input = malloc(0);
     input = realloc(input, sizeof(char) * (strlen("cat ") + strlen(path) + strlen(" | more")));
     strcat(input, "cat ");
@@ -74,8 +82,8 @@ void help(char *path) {
 }
 
 
-void IORedirection(char **args) {
-    for(int i = 1; args[i - 1] !=NULL; i++){ // check for <
+void IORedirection(char **args) { // input/output redirecton
+    for(int i = 1; args[i - 1] !=NULL; i++){ // checks for <
         if(strcmp(args[i - 1], "<") == 0){   
             if(access(args[i - 1], F_OK) != 0){   // this checks if the file exist
                 perror("Error: File Not Found.");
