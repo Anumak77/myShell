@@ -21,8 +21,8 @@ Batch mode allows to take its input from the command line from a file, only when
 
 
 I/O redirection is simply how the program runs and stores its input and output according to files if specified, such as -  shell vs2 vs2 < inputfile > outputfile. Here vs1 and vs2 are replaced by input and output done using internal commands such as dir, environ, echo and help
-> - if the output file is already created 
->> - if the output file is not created already
+- if the output file is already created '>'
+- if the output file is not created already '>>'
 with the use of I/O redirection, we can allow input and output to be stored in files.
 
 Description of the process concept and the differences between background and foreground execution (5 marks)
